@@ -75,39 +75,31 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.js|\.jsx$/,
+        test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: {
-          loader: 'babel-loader',
-          query: {
-            presets: [
-              ["env", {
-                "targets": {
-                  "browsers": ["last 2 versions", "ie >= 9"]
-                }
-              }]
-            ]
-            // plugins: ['transform-object-rest-spread']
-          }
+          loader: 'babel-loader'
         }
       },
       // {
-      //   test: /\.jsx$/,
-      //   // exclude: /node_modules/,
-      //   use: [
-      //     {
-      //       loader: "jsx-loader",
-      //       options: {},
-      //     },
-      //   ]
-      // }
+      //   test: /\.(js|jsx)$/,
+      //   exclude: /node_modules/,
+      //   use: {
+      //     loader: 'babel-loader',
+      //     query: {
+      //       presets: [
+      //         ["env", {
+      //           "targets": {
+      //             "browsers": ["last 2 versions", "ie >= 9"]
+      //           }
+      //         }]
+      //       ]
+      //     }
+      //   }
+      // },
       // {
       //   test: /\.css?$/,
       //   loader: "style-loader!css-loader"
-      // },
-      // {
-      //   test: /(\.html|\.htm)$/,
-      //   loader: 'html-loader',
       // },
       // {
       //   test: /\.scss?$/,
@@ -135,7 +127,8 @@ module.exports = {
     extensions: [".vue", '.js', '.coffee'],
     alias: {
       // "vue$": path.join(__dirname, "./node_modules/vue/dist/vue.esm.js"),
-      // '@vue': path.resolve(__dirname, "./client/js/vue"),
+      '@mobx': path.resolve(__dirname, "./client/mobx"),
+      '@redux': path.resolve(__dirname, "./client/redux"),
       // '@route': path.resolve(__dirname, "./client/js/route"),
       // '@store': path.resolve(__dirname, "./client/js/store"),
     }
