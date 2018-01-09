@@ -33,6 +33,8 @@ let ooo = {
 };
 var a = fromJS({ name: sjb, skill: 'eat shit fuck' })
 var b = fromJS({ name: sjb, sex: ooo });
+var w = fromJS({});
+console.log(w.size, ` .....size()  `);
 ooo.sex = '5566';
 var c = a.merge(b);
 var cc = Seq(c).filter((v,k) => k === 'name' || k === 'skill');
@@ -48,5 +50,5 @@ const oddSquares = Seq.of(1, 2, 3, 4, 5, 6, 7, 8)
     return x % 2;
   })
   .map(x => x * x)
-// console.log(oddSquares);
+console.log(oddSquares.get(1));
  
