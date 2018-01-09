@@ -15,6 +15,7 @@ export default class Index extends React.Component {
   }
   shit() {
     this.props.store.changename("11111111111");
+
   }
   render() {
     console.log(this.props.store);
