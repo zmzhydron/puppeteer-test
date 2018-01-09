@@ -1,13 +1,13 @@
 var path = require("path");
 var webpack = require("webpack");
-// var CopyWebpackPlugin = require("copy-webpack-plugin");
-// var HtmlWebpackPlugin = require('html-webpack-plugin');
+var CopyWebpackPlugin = require("copy-webpack-plugin");
+var HtmlWebpackPlugin = require('html-webpack-plugin');
 var pkg = require("./package.json");
 console.log(pkg, '************************************');
 let { devServer: { server: proxySev, host, port } } = pkg;
 module.exports = {
   entry: {
-    lol: path.resolve(__dirname, "./2.js")
+    lol: path.resolve(__dirname, "./client/app.jsx")
   },
   output: {
     path: path.resolve(__dirname, "./dev"),
@@ -41,13 +41,13 @@ module.exports = {
     },
   },
   plugins: [
-    // new HtmlWebpackPlugin({
-    //   filename: "index.html",
-    //   template: "./index.html",
-    //   inject: true,
-    //   hash: true,
-    //   title: "fucking yeah",
-    // }),
+    new HtmlWebpackPlugin({
+      filename: "index.html",
+      template: "./index.html",
+      inject: true,
+      hash: true,
+      title: "fucking yeah",
+    }),
     // new webpack.DllReferencePlugin({
     //   context: __dirname,
     //   manifest: require('./manifest.json'),
@@ -75,8 +75,8 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.js$/,
-        // exclude: /node_modules/,
+        test: /\.js|\.jsx$/,
+        exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
           query: {
@@ -91,16 +91,16 @@ module.exports = {
           }
         }
       },
-      {
-        test: /\.jsx$/,
-        // exclude: /node_modules/,
-        use: [
-          {
-            loader: "jsx-loader",
-            options: {},
-          },
-        ]
-      }
+      // {
+      //   test: /\.jsx$/,
+      //   // exclude: /node_modules/,
+      //   use: [
+      //     {
+      //       loader: "jsx-loader",
+      //       options: {},
+      //     },
+      //   ]
+      // }
       // {
       //   test: /\.css?$/,
       //   loader: "style-loader!css-loader"

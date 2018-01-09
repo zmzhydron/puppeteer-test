@@ -1,13 +1,22 @@
-import React from 'react'
+import React from "react"
 import ReactDom from "react-dom"
 
-export class index extends React.Component {
+export default class Index extends React.Component {
   constructor(props) {
     super(props);
   }
-  render(){
+  lister() {
+    let asdf = 'zhangmingzhi';
+    return [...asdf].map((item, index) => {
+      return <p key={index}>{item}, hello!</p>
+    })
+  }
+  render() {
     return (
-      <h1>1111111111111</h1>
+      <div>
+        <h1>1111111111111</h1>
+        {this.lister()}
+      </div>
     )
   }
 }
