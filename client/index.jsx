@@ -8,21 +8,31 @@ export default class Index extends React.Component {
     super(props);
   }
   lister() {
-    let asdf = 'zhangmingzhi';
-    return [...asdf].map((item, index) => {
-      return <p key={index}>{item}, hello!</p>
+    return this.props.store.todos.map((item, index) => {
+      return <p key={index}>{item.name}, hello!, age of {item.age}</p>
     })
+  }
+  componentWillReact(a,b,c,d) {
+    console.log(a);
+    console.log(b);
+    console.log(c);
+    console.log(d);
   }
   shit() {
     this.props.store.changename("11111111111");
-
+  }
+  addTodos(){
+    this.props.store.addTodos();
   }
   render() {
     console.log(this.props.store);
+    let len = this.props.store.todoLen;
     return (
       <div>
-        <h1>{this.props.store.name}</h1>
+        <h1>{this.props.store.fullname}</h1>
+        <h3>{this.props.store.name}</h3>
         <button onClick={this.shit.bind(this)}>shit</button>
+        <button onClick={this.addTodos.bind(this)}>addTods {len}</button>
         {this.lister()}
       </div>
     )
