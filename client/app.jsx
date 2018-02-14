@@ -1,13 +1,16 @@
 import React from 'react'
 import ReactDom from "react-dom"
 import App from "./mobxjsx/index.jsx"
-import AppRedux from "./reduxjsx/index.jsx"
+import AppRouter from "./reactRouter/index.jsx"
+import ReduxMain from "./reduxjsx/index.jsx"
 import Stores from "@mobx/family.js"
 import StoreRedux from "@redux/reducers/a.js"
 // import { Provider, inject } from "mobx-react"
 import { Provider } from "react-redux"
-import { createStore, applyMiddleware } from 'redux'
+import { createStore, applyMiddleware, combineReducers } from 'redux'
 import thunk from "redux-thunk"
+import { syncHistoryWithStore, routerReducer } from 'react-router-redux'
+import { BrowserRouter as Router, HashRouter, Route, Link } from 'react-router-dom'
 // var store = new Stores();
 // window.store = store;
 // ReactDom.render(
@@ -19,45 +22,81 @@ import thunk from "redux-thunk"
 /** middleware ***/
 
 const MA = store => next => action => {
-  console.log("111111111");
-  console.log(store.getState(), 'store 0000000000');
-  console.log(next, `next`);
-  console.log(action, 'action');
-  if (action.type === 'changesonname') {
-    action.type = 'changefathername';
-  }
+  // console.log("111111111");
+  // console.log(store.getState(), 'store 111111111', store);
+  // console.log(next, `next 1111111111`);
+  // console.log(action, 'action 11111111111');
+  // if (action.type === 'changesonname') {
+  //   action.type = 'changefathername';
+  // }
   var r = next(action);
-  console.log(r, 'rrrrrrrrrrr');
-  console.log(store.getState(), `getStateAAAA`);
-  // return r;
+  // console.log(r, 'rrrrrrrrrrr');
+  // console.log(store.getState(), `@@@@ 1111111111`);
+  return 'popdada';
 }
 const MB = store => next => action => {
-  console.log("22222222");
-  // console.log(next);
-  // console.log(store)
-  // console.log(action)
-  action.name = 'shitman';
+  // console.log("222222222");
+  // console.log(store.getState(), 'store 2222222222');
+  // console.log(next, `next222222222`);
+  // console.log(action, 'action222222222');
+  // action.name = 'shitman';
   var r = next(action);
-  console.log(store.getState(), `getStateBBBBB`);
-  // return r;
+  // console.log(store.getState(), `@@@@ 2222222222`);
+  return `shit fuckyou puussty`
 }
 const MC = store => next => action => {
-  console.log("333333333");
-  // console.log(next);
-  // console.log(store)
-  console.log(action, 'final');
-  console.log(next, `finnal next`);
+  // console.log("3333333333");
+  // console.log(store.getState(), 'store 3333333333', store);
+  // console.log(next, `next 3333333333333`);
+  // console.log(action, 'action 333333333333');
   var r = next(action);
-  console.log(store.getState(), `getStateCCCCC`);
+  // console.log(`infinate loop`)
+  // store.dispatch(action);
+  // console.log(store.getState(), `@@@@ 33333333`);
   // return r;
+}
+const THUNK = store => next => action => {
+  // console.log("00000000");
+  // console.log(store.getState(), 'store 11111', store);
+  // console.log(next, `next 11111111111111`);
+  // console.log(action, 'action 111111111111');
+  if (typeof action === 'function') {
+    action(store.dispatch);
+  } else {
+    next(action);
+  }
 }
 
 /** middleware ***/
 
-var store = applyMiddleware(MA)(createStore)(StoreRedux);
+
+
+// var store = applyMiddleware(THUNK, MA, MB, MC)(createStore)(combineReducers({
+//   ...StoreRedux,
+//   routing: routerReducer
+// }));
+var store = applyMiddleware(THUNK, MA, MB, MC)(createStore)(StoreRedux);
+console.log(store);
+// let history = syncHistoryWithStore(browserHistory, store);
+// history.listen = val => {
+//   console.log(val);
+// }
 window.store = store;
+
+
+const Hhehe = () => {
+  return (
+    <h1>SHIT MAN</h1>
+  )
+}
+const ASDF = () => {
+  return (
+    <h1>FUCKYOU MAN</h1>
+  )
+}
+//ReduxMain
 ReactDom.render(
   <Provider store={store}>
-    <AppRedux />
+    <AppRouter />
   </Provider>
   , document.getElementById('app'));

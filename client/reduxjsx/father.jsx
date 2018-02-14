@@ -7,12 +7,21 @@ export default class Index extends React.Component {
   changename() {
     this.props.actions.changefathername("zhanggguanglung");
   }
+  asyncChangeName() {
+    console.log(this.props.actions.asyncChangeName);
+    this.props.actions.asyncChangeName();
+  }
+  asyncChangeNamePro() {
+    this.props.actions.asyncChangeNamePro();
+  }
   render() {
     let { name, age } = this.props.passProps;
     return (
       <div>
           <h2 style={{color: "red"}}>father: {name}</h2>
           <button onClick={this.changename.bind(this)}>changename</button>
+          <button onClick={this.asyncChangeName.bind(this)}>asyncChangeName</button>
+          <button onClick={this.asyncChangeName.bind(this)}>asyncChangeNamePro</button>
       </div>
     )
   }

@@ -6,12 +6,16 @@ var pkg = require("./package.json");
 let { devServer: { server: proxySev, host, port } } = pkg;
 module.exports = {
   entry: {
-    lol: path.resolve(__dirname, "./client/vue/app.js")
-    // lol: path.resolve(__dirname, "./client/app.jsx")
+    lol: path.resolve(__dirname, "./client/vue/app.js"),
+    // lol: path.resolve(__dirname, "./client/app.jsx"),
+    fuckyou: path.resolve(__dirname, "./local/2.js"),
+    ass: path.resolve(__dirname, "./local/2.js"),
+    up: path.resolve(__dirname, "./local/3.js"),
   },
   output: {
     path: path.join(__dirname, "/dev"),
     filename: "[name].js",
+    // publicPath: "/"
   },
   // context: path.resolve(__dirname, "./client"),
   devtool: 'eval-source-map',
@@ -20,27 +24,6 @@ module.exports = {
   //   'jquery': 'window.$',
   //   'vue': "Vue",
   // },
-  devServer: {
-    // contentBase: path.join(__dirname, "/dev"),
-    contentBase: false,
-    port: port,
-    host: host,
-    index: "app.html",
-    historyApiFallback: {
-      index: "/app.html"
-    },
-    proxy: {
-      "/api": {
-        target: proxySev,
-        secure: false
-      }
-    },
-    inline: true,
-    hot: true,
-    stats: {
-      colors: true
-    },
-  },
   plugins: [
     new HtmlWebpackPlugin({
       filename: "app.html",
@@ -88,22 +71,6 @@ module.exports = {
           loader: 'vue-loader'
         }
       }
-      // {
-      //   test: /\.(js|jsx)$/,
-      //   exclude: /node_modules/,
-      //   use: {
-      //     loader: 'babel-loader',
-      //     query: {
-      //       presets: [
-      //         ["env", {
-      //           "targets": {
-      //             "browsers": ["last 2 versions", "ie >= 9"]
-      //           }
-      //         }]
-      //       ]
-      //     }
-      //   }
-      // },
       // {
       //   test: /\.css?$/,
       //   loader: "style-loader!css-loader"

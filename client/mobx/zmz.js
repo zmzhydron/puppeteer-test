@@ -1,12 +1,10 @@
-import {
-  observable,
-  computed,
-  action,
-  extendObservable,
-  isObservable,
-  isBoxedObservable,
-  autorun
-} from "mobx";
+import { observable, computed, action, extendObservable, isObservable, isBoxedObservable, autoru } from "mobx";
+let myself = {
+  name: {
+    first: "zhang",
+    last: "mingzhi"
+  }
+}
 var raw = {
   skill: `codeing`,
   family: {
@@ -63,10 +61,10 @@ export default class Zmz {
     this.profile.skill = 30000 + " ~~ " + Math.random();
     console.log(this.profile, raw);
   }
-  @action changeStatus(index, status){
+  @action changeStatus(index, status) {
     this.profile.goals[index].finish = status;
   }
-  @action addGolas(name, cb){
+  @action addGolas(name, cb) {
     this.profile.goals.push({
       finish: false,
       name,

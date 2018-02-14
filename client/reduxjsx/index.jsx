@@ -5,6 +5,12 @@ import { bindActionCreators } from "redux"
 import * as actions from "@redux/actions/1.js"
 import Father from "./father.jsx"
 import Son from "./son.jsx"
+let myself = {
+  name: {
+    first: "zhang",
+    last: "mingzhi"
+  }
+}
 class Index extends React.Component {
   constructor(props) {
     super(props);
@@ -15,8 +21,8 @@ class Index extends React.Component {
     let { son, father, member, name } = this.props.store;
     return (
       <div>
-        <Father actions={this.actions} passProps={father}/>
-        <Son actions={this.actions} passProps={son}/>
+        <Father actions={this.actions} passProps={father} />
+        <Son actions={this.actions} passProps={son} />
       </div>
     )
   }

@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux'
-
+let name = 'shitman';
 const raw = {
   name: "zhang",
   menber: 5,
@@ -23,6 +23,7 @@ const reducerWapper = opObj => (state = raw, action) => {
 
 const stageA = reducerWapper({
   changesonname: (state, action) => {
+    console.log(action, state, `reducer stage....`);
     return {
       ...state,
       son: {
@@ -32,6 +33,7 @@ const stageA = reducerWapper({
     }
   },
   changefathername: (state, action) => {
+    console.log(action, state, `>>>>>>>>>>>>>>>>>>>>>>reducer stage....`);
     return {
       ...state,
       father: {
