@@ -1,0 +1,19 @@
+{
+  "method": "POST",
+  "url": "/api/aaa?name=zmz&age=24",
+  "header": {
+    "cookie": "optimizelyEndUserId=oeu1506606139058r0.050637368561792906; _ga=GA1.1.235735029.1500127321; _gid=GA1.1.692153336.1518620255",
+    "accept-language": "zh-CN,zh;q=0.9,en;q=0.8",
+    "accept-encoding": "gzip, deflate, br",
+    "referer": "http://localhost:8123/",
+    "content-type": "application/json;charset=UTF-8",
+    "user-agent": "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36",
+    "origin": "http://localhost:8123",
+    "accept": "application/json, text/plain, */*",
+    "cache-control": "no-cache",
+    "pragma": "no-cache",
+    "content-length": "23",
+    "connection": "close",
+    "host": "localhost:8123"
+  }
+}

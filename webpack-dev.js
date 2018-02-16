@@ -3,7 +3,8 @@ var webpack = require("webpack");
 var CopyWebpackPlugin = require("copy-webpack-plugin");
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var pkg = require("./package.json");
-let { devServer: { server: proxySev, host, port } } = pkg;
+let { devServer: { proxySev, host, port } } = pkg;
+console.log(proxySev, '`proxySev`');
 module.exports = {
   entry: {
     lol: path.resolve(__dirname, "./client/vue/app.js")
@@ -15,11 +16,10 @@ module.exports = {
   },
   // context: path.resolve(__dirname, "./client"),
   devtool: 'eval-source-map',
-  // externals: {
-  //   'jquery': 'window.jQuery',
-  //   'jquery': 'window.$',
-  //   'vue': "Vue",
-  // },
+  externals: {
+    'jquery': 'window.jQuery',
+    'jquery': 'window.$',
+  },
   devServer: {
     // contentBase: path.join(__dirname, "/dev"),
     contentBase: false,
@@ -70,11 +70,17 @@ module.exports = {
       // },
     ]),
     new webpack.ProvidePlugin({
-      ajax: "aijiakesi",
+      axios: "axios",
     })
   ],
   module: {
     rules: [
+      {
+        test: /\.vue$/,
+        use: {
+          loader: 'vue-loader'
+        }
+      },
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
@@ -82,28 +88,6 @@ module.exports = {
           loader: 'babel-loader'
         }
       },
-      {
-        test: /\.vue$/,
-        use: {
-          loader: 'vue-loader'
-        }
-      }
-      // {
-      //   test: /\.(js|jsx)$/,
-      //   exclude: /node_modules/,
-      //   use: {
-      //     loader: 'babel-loader',
-      //     query: {
-      //       presets: [
-      //         ["env", {
-      //           "targets": {
-      //             "browsers": ["last 2 versions", "ie >= 9"]
-      //           }
-      //         }]
-      //       ]
-      //     }
-      //   }
-      // },
       // {
       //   test: /\.css?$/,
       //   loader: "style-loader!css-loader"

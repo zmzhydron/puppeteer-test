@@ -9,12 +9,12 @@ import C from "../reduxjsx/C.jsx"
 
 const Hhehe = () => {
 	return (
-			<h1>SHIT MAN</h1>
+		<h1>SHIT MAN</h1>
 	)
 }
 const ASDF = () => {
 	return (
-			<h1>FUCKYOU MAN</h1>
+		<h1>FUCKYOU MAN</h1>
 	)
 }
 
