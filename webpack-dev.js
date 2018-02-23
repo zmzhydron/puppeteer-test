@@ -7,8 +7,8 @@ let { devServer: { proxySev, host, port } } = pkg;
 console.log(proxySev, '`proxySev`');
 module.exports = {
   entry: {
-    lol: path.resolve(__dirname, "./client/vue/app.js")
-    // lol: path.resolve(__dirname, "./client/app.jsx")
+    // lol: path.resolve(__dirname, "./client/vue/app.js")
+    lol: path.resolve(__dirname, "./client/app.jsx")
   },
   output: {
     path: path.join(__dirname, "/dev"),

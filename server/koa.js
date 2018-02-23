@@ -2,22 +2,23 @@ var koa = require("koa");
 var app = new koa();
 var router = require("koa-router")()
 var multer = require("koa-multer")
+var bodyParser = require('koa-bodyparser')
 var koaBody = require("koa-body");
 var fs = require("fs")
 var path = require("path")
-
+app.use(koaBody())
 const customea = async function asdf(o, next){
   o.req.names = 'zhangmingzhi';
   await next();
 }
 app.use(customea);
-app.use(koaBody())
 app.use(router.routes()).use(router.allowedMethods())
+// app.use(bodyParser())
 router.post("/api/aaa", async (o, next) => {
   console.log(`enter next()`, o.request.query, o.request.body, o.is("json"));
   var lister = [];
   o.req.on("data", chunk => {
-    console.log(chunk, 'chunk');
+    console.log(chunk, 'chunk aaa');
     lister.push(chunk);
   })
 
@@ -30,6 +31,7 @@ router.post("/api/aaa", async (o, next) => {
   await next();
 })
 app.use(async (o, next) => {
+  await next();
   var lister = [];
   o.req.on("data", chunk => {
     console.log(chunk, ' >>>>>>>>chunk<<<<<<<<<<');
@@ -40,7 +42,7 @@ app.use(async (o, next) => {
     var r = lister.join("").toString();
     console.log(r, 'stream end2');
   })
-  await next();  
+    
 })
 
 app.use(async (o, next) => {

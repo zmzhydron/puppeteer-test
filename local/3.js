@@ -58,7 +58,8 @@ var aa = Promise.resolve()
 })
 async function haha() {
   var r = await aa;
-  return r;
+  console.log("2");
+  return r
 }
 haha().then(val => {
   console.log(`final`, val, timeStamp());

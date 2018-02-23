@@ -29,7 +29,7 @@ const MA = store => next => action => {
   // if (action.type === 'changesonname') {
   //   action.type = 'changefathername';
   // }
-  var r = next(action);
+  next(action);
   // console.log(r, 'rrrrrrrrrrr');
   // console.log(store.getState(), `@@@@ 1111111111`);
   return 'popdada';
@@ -40,7 +40,7 @@ const MB = store => next => action => {
   // console.log(next, `next222222222`);
   // console.log(action, 'action222222222');
   // action.name = 'shitman';
-  var r = next(action);
+  next(action);
   // console.log(store.getState(), `@@@@ 2222222222`);
   return `shit fuckyou puussty`
 }
@@ -48,8 +48,8 @@ const MC = store => next => action => {
   // console.log("3333333333");
   // console.log(store.getState(), 'store 3333333333', store);
   // console.log(next, `next 3333333333333`);
-  // console.log(action, 'action 333333333333');
-  var r = next(action);
+  console.log(action, 'action 333333333333');
+  next(action);
   // console.log(`infinate loop`)
   // store.dispatch(action);
   // console.log(store.getState(), `@@@@ 33333333`);

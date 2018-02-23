@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+    }
+    .bitch {
+      color: red;
+      border: dashed 5px olivedrab;
+    }
+    .is{
+      font-weight: bolder;
+    }
+    #asdf {
+      opacity: 0.7;
+      margin-left: 100px;
+    }
+    #olala{
+      margin-left: 51px;
+      padding-left: 99px;
+    }
+    .greenandbold{
+      font-size: 72px;
+      font-weight: bold;
+      color: greenyellow;
+    }
+  </style>
+</head>
+
+<body>
+  <button id="add">add div</button>
+  <button id="events" onclick="eventsss()">events</button>
+  <span>1</span>
+  <span>1</span>
+  <div id='asdf' class="zmz is a bitch" data-name="shitbird" shitbird="zmz">
+    zhangmingzhi
+    <div id="olala">dashabi</div>
+  </div>
+  <script>
+    window._log = window.console.log;
+
+    function addDiv() {
+      var newDiv = document.createElement("div");
+      newDiv.innerHTML = "i am new divs";
+      document.body.appendChild(newDiv);
+      setTimeout(() => {
+        console.log(divs.length, divs, document.querySelectorAll("div"));
+      }, 1);
+    }
+    function DOMWAKL(){
+      var walker = document.createNodeIterator(document, NodeFilter.SHOW_ELEMENT, null, false);
+      var info = walker.nextNode();
+      while(info !== null){
+        _log(info, 'node walker says');
+        info = walker.nextNode();
+      }
+    }
+    function ranger(node){
+      var olala = document.getElementById("olala");
+      var r = document.createRange();
+      var start = r.setStart(olala.firstChild, 2);
+      var end = r.setEnd(olala.firstChild, 3);
+      var insert = document.createDocumentFragment();
+      var span = document.createElement("span");
+      span.className = "greenandbold";
+      span.innerHTML = 'greenandbold';
+      _log(insert.nodeType);
+      r.insertNode(span);
+      r.selectNodeContents(olala);
+      console.log(r.selectNode())
+      
+    }
+    var she = {
+      profession: "porn"
+    }
+    var me = {
+      names: "zmz",
+      sayHi: function(){
+        _log(this)
+      }.bind(she)
+    }
+    var names = 'zhangmingzhi'
+    function eventsss(){
+      _log(this)
+      with(me){
+        _log(names)
+      }
+    };
+    // document.getElementById("events").onclick = function(){
+    //   _log(this);
+    // }
+    function getOffset(node){
+      let parent = node.parentNode;
+      let max = node.offsetLeft;
+      while(parent.nodeName !== 'BODY'){
+        max += parent.offsetLeft;
+        parent = parent.parentNode;
+      }
+      return `totoal value is: ${max}`;
+    }
+    console.log(`doctype:`, document.doctype)
+    var spans = document.querySelectorAll(`span`);
+    _log(spans[0].isEqualNode(spans[1]), `.....`, spans[0]);
+
+    window.onload = function() {
+      var btn = document.querySelector("#add");
+      var asdf = document.querySelector("#asdf");
+      var divs = document.getElementsByTagName("div");
+      btn.addEventListener("click", function(event) {
+        _log(asdf.classList);
+        _log(asdf.style.length, `.................`)
+        var sty = document.defaultView.getComputedStyle(asdf);
+        _log(sty.color, sty.border);
+        _log(document.styleSheets)
+        var stylers = document.styleSheets;
+        var asdfStyle = stylers[0];
+        asdfStyle.insertRule(`.zmz { background-color: silver}`,0)
+        asdf.classList.toggle("is");
+        _log(getOffset(document.getElementById("olala")));
+        // DOMWAKL();
+        ranger(asdf);
+      }, false);
+      // console.log(asdf.attributes)
+      // console.log(document.documentElement.childNodes)
+      // console.log(document.body)
+      // console.log(window.location.hostname)
+      // asdf.outerHTML = "<h2>outhtml</h2>";
+      // var t = asdf.innerText;
+      // var nodes = document.createElement("h2");
+      // nodes.innerText = 'fuckyoubitch';
+      // var replaces = asdf.querySelector("div");
+      // console.log(replaces);
+      // asdf.replaceChild(nodes, replaces)
+      // console.log(t);
+      // console.log(typeof divs, divs);
+
+    }
+  </script>
+</body>
+
+</html>
