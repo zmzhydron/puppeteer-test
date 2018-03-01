@@ -22,15 +22,18 @@
     #menu.show {
       display: block;
     }
+
     #a {
       padding: 20px;
       border: solid 2px red;
     }
+
     #cap {
       width: 150px;
       height: 150px;
       background: fuchsia;
     }
+
     #b {
       padding: 20px;
       border: solid 2px olivedrab;
@@ -105,12 +108,12 @@
     var start = document.querySelector("#a");
     var dragele = document.querySelector("#cap");
     var end = document.querySelector("#b");
+    let visual = 'link';
     phast.onclick = () => {
       let select = document.getElementById("slee");
       _log(select.options[select.selectedIndex].value);
     }
-    //拖动元素
-    dragele.addEventListener('dragstart', (event) => {
+    const dragstart = e => {
       let obj = {
         id: event.target.id,
         data: {
@@ -119,18 +122,27 @@
         }
       }
       event.dataTransfer.setData('TSe11xt', JSON.stringify(obj));
-    }, false);
-    const drop = (e) => {
+      //如果不设置e.dataTransfer.dropEffect的话，那么e.dataTransfer.dropEffect的值默认为effectAllowed的值
+      event.dataTransfer.effectAllowed = 'move';
+    }
+    const drop = e => {
       let data = JSON.parse(e.dataTransfer.getData('TSe11xt'));
-      _log(e.dataTransfer.getData('TSe11xt'), `e.dataTransfer.getData('TSext')`)
       e.target.appendChild(document.getElementById(data.id));
     }
-    start.addEventListener('dragover', (e) => { e.preventDefault()}, false);
-    end.addEventListener('dragover', (e) => { e.preventDefault()}, false);
-    start.addEventListener('drop', drop , false);
-    end.addEventListener('drop', drop , false);
-    copy.onclick = function(event){
-      _log(event.clipboardData)
+    const dragover = e => {
+      // 拖动到drop区域的时候屏蔽默认事件，让其能被drop
+      e.preventDefault();
+      e.dataTransfer.dropEffect = 'link';
+    }
+    dragele.addEventListener('dragstart', dragstart, false);
+    start.addEventListener('dragover', dragover, false);
+    end.addEventListener('dragover', dragover, false);
+    start.addEventListener('drop', drop, false);
+    end.addEventListener('drop', drop, false);
+
+    copy.onclick = function(event) {
+      _log(event.clipboardData);
+      document.execCommand("copy");
     }
     input.addEventListener("textInput", function(e) {
 

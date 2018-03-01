@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .hide {
+      /* display: none; */
+      /* visibility: hidden; */
+      position: absolute;
+      top: -10000px;
+    }
+
+    #b {
+      width: 600px;
+      border: solid 5px red;
+      word-break: break-all;
+    }
+
+    #cap {
+      float: left;
+      height: 50px;
+      width: 150px;
+      background: antiquewhite;
+    }
+
+    #d {
+      /* overflow: auto; */
+    }
+
+    #a {
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: center;
+      align-content: center;
+      width: 90px;
+    }
+
+    .b {
+      height: 30px;
+      width: 30px;
+      border: solid 1px red;
+      flex: 1 0 auto;
+      box-sizing: border-box;
+    }
+  </style>
+</head>
+
+<body>
+  <button id="copy">copy</button>
+  <input type="text" id="asdf" />
+  <div id="b">
+    <div id="cap"></div>
+    <div id='d'>
+      fudfgjhsdfklgjhsdflkjghskljdfghlskdjfhgfudfgjhsdfklgjhsdflkjghskljdfghlskdjfhgfudfgjhsdfklgjhsdflkjghskljdfghlskdjfhgfudfgjhsdfklgjhsdflkjghskljdfghlskdjfhgfudfgjhsdfklgjhsdflkjghskljdfghlskdjfhgfudfgjhsdfklgjhsdflkjghskljdfghlskdjfhg
+    </div>
+  </div>
+  <div id="a">
+    <div class="b">1</div>
+    <div class="b">2</div>
+    <div class="b">3</div>
+    <div class="b">4</div>
+    <div class="b">5</div>
+    <div class="b">6</div>
+    <div class="b">7</div>
+    <div class="b">8</div>
+    <div class="b">9</div>
+  </div>
+</body>
+<script>
+  var ary = [11, 44, 77, 43, 22, 567, 3, 1, 6, 11, 176, 8, 568, 34];
+  var sort = list => {
+    const core = arys => {
+      let len = arys.length;
+      if (len <= 1) { return arys };
+      let centerIndex = Math.floor(len / 2);
+      let center = arys[centerIndex];
+      let left = arys.slice(0, centerIndex);
+      let right = arys.slice(centerIndex + 1);
+      let leftLarge = left.filter(item => item >= center);
+      let rightSmall = right.filter(item => item < center);
+      right = right.filter(item => item >= center).concat(leftLarge);
+      left = left.filter(item => item < center).concat(rightSmall);
+      return [...core(left), center, ...core(right)];
+    }
+    return core(list);
+  }
+  window.log = window.console.log;
+  console.log(sort(ary))
+
+
+  log(1);
+  setTimeout(() => {
+    log(2)
+  });
+  new Promise((resolve, reject) => {
+    log(3);
+    resolve(4);
+  }).then(val => {
+    log(4)
+  })
+
+
+
+
+  window.onload = function() {
+    var btn = document.getElementById("copy");
+    btn.onclick = e => {
+      copyText('fuckyou')
+    }
+  }
+
+  function copyText(text) {
+    var input = document.createElement("input");
+    input.value = text;
+    input.type = 'text';
+    input.style.cssText = `position: absolute; top: -10000px;`;
+    document.body.appendChild(input);
+    input.select(); // 选择输入框内容；
+    document.execCommand("copy"); //执行粘贴操作;
+    document.body.removeChild(input);
+  }
+
+  var me = {
+    name: `zmz`,
+    valu1eOf: () => {
+      return `fuckyou`
+    }
+  }
+  Object.defineProperties(me, {
+    "age": {
+      configurable: false,
+      value: 29,
+      writable: true,
+      enumerable: true,
+    },
+    job: {
+      enumerable: true,
+      configurable: true,
+      get() {
+        console.log("111111111")
+        return `none`
+      },
+      set(val) {
+
+      }
+    }
+  })
+  class Notify {
+    constructor() {
+      this.watcher = {};
+    }
+    notify(before, current, o, key, ) {
+      if (this.watcher[key]) {
+        this.watcher[key].forEach(item => {
+          item(before, current, o, key);
+        })
+      }
+    }
+    addWatch(key, fn) {
+      if (this.watcher[key]) {
+        this.watcher[key].push(fn);
+      } else {
+        this.watcher[key] = [fn];
+      }
+    }
+    removeWatch(key, fn) {
+
+    }
+  }
+  var nauthy = new Notify();
+
+  function addProps(o, key) {
+    var val;
+    var init = () => {};
+    Object.defineProperty(o, key, {
+      enumerable: true,
+      configurable: true,
+      set(value) {
+        if (val !== value) {
+          console.log("binggo", value, val);
+          nauthy.notify(val, value, o, key);
+        }
+        val = value;
+      },
+      get() {
+        return val;
+      }
+    })
+  }
+
+  function watch(key, callback) {
+    nauthy.addWatch(key, callback);
+  }
+  addProps(me, 'sex');
+  addProps(me, 'salary');
+  watch(`sex`, (a, b, o, key) => {
+    console.log(`before`, a, ` after`, b, o, key);
+  })
+  watch(`salary`, (a, b, o, key) => {
+    console.log(`before`, a, ` after`, b, o, key);
+  })
+  me.sex = 'male';
+</script>
+
+</html>

@@ -6,15 +6,15 @@ var pkg = require("./package.json");
 let { devServer: { server: proxySev, host, port } } = pkg;
 module.exports = {
   entry: {
-    lol: path.resolve(__dirname, "./client/vue/app.js"),
-    // lol: path.resolve(__dirname, "./client/app.jsx"),
-    fuckyou: path.resolve(__dirname, "./local/2.js"),
-    ass: path.resolve(__dirname, "./local/2.js"),
-    up: path.resolve(__dirname, "./local/3.js"),
+    // lol: path.resolve(__dirname, "./client/vue/app.js")
+    lol: path.resolve(__dirname, "./client/app.jsx"),
+    // fuckyou: path.resolve(__dirname, "./local/2.js"),
+    // ass: path.resolve(__dirname, "./local/2.js"),
+    // up: path.resolve(__dirname, "./local/3.js"),
   },
   output: {
-    path: path.join(__dirname, "/dev"),
-    filename: "[name].js",
+    path: path.join(__dirname, "/build"),
+    filename: "[name][hash:4].js",
     // publicPath: "/"
   },
   // context: path.resolve(__dirname, "./client"),
@@ -70,15 +70,15 @@ module.exports = {
         use: {
           loader: 'vue-loader'
         }
+      },
+      {
+        test: /\.css?$/,
+        loader: "style-loader!css-loader"
+      },
+      {
+        test: /\.scss?$/,
+        loader: "style-loader!css-loader!sass-loader"
       }
-      // {
-      //   test: /\.css?$/,
-      //   loader: "style-loader!css-loader"
-      // },
-      // {
-      //   test: /\.scss?$/,
-      //   loader: "style-loader!css-loader!sass-loader"
-      // },
       // {
       //   test: /\.(jpg|png|gif|svg)(\?.*)?$/,
       //   loader: "url-loader",

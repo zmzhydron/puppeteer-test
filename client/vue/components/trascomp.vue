@@ -20,11 +20,11 @@ export default {}
 }
 .puss-enter-to, .puss-leave {
   left: 0px;
-  /* opacity: 1; */
+  opacity: 1;
 }
 
 .puss-enter, .puss-leave-to{
-  /* opacity: 0; */
+  opacity: 0.5;
   left: 300px;
 }
 .hahaha{

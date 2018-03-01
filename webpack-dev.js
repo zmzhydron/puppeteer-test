@@ -88,14 +88,14 @@ module.exports = {
           loader: 'babel-loader'
         }
       },
-      // {
-      //   test: /\.css?$/,
-      //   loader: "style-loader!css-loader"
-      // },
-      // {
-      //   test: /\.scss?$/,
-      //   loader: "style-loader!css-loader!sass-loader"
-      // },
+      {
+        test: /\.css?$/,
+        loader: "style-loader!css-loader"
+      },
+      {
+        test: /\.scss?$/,
+        loader: "style-loader!css-loader!sass-loader"
+      },
       // {
       //   test: /\.(jpg|png|gif|svg)(\?.*)?$/,
       //   loader: "url-loader",

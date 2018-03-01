@@ -1,6 +1,7 @@
 import React from "react"
 import ReactDom from "react-dom"
-export default class Index extends React.Component {
+import propTypes from "prop-types"
+export default class Father extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -16,13 +17,18 @@ export default class Index extends React.Component {
   }
   render() {
     let { name, age } = this.props.passProps;
+    let asdf = this.context.asdf;
     return (
       <div>
           <h2 style={{color: "red"}}>father: {name}</h2>
+          <h2 style={{color: "green"}}>asdf: {asdf}</h2>
           <button onClick={this.changename.bind(this)}>changename</button>
           <button onClick={this.asyncChangeName.bind(this)}>asyncChangeName</button>
           <button onClick={this.asyncChangeName.bind(this)}>asyncChangeNamePro</button>
       </div>
     )
   }
+}
+Father.contextTypes = {
+  asdf: propTypes.string
 }

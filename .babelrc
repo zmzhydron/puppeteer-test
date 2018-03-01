@@ -1,4 +1,7 @@
 {
   "presets": ["react", "env", "stage-1"],
-  "plugins": ["transform-decorators-legacy", "transform-class-properties"]
+  "plugins": [
+    "transform-decorators-legacy",
+    ["import", { "libraryName": "antd", "libraryDirectory": "es", "style": "css" }],
+     "transform-class-properties"]
 }
