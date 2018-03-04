@@ -4,22 +4,22 @@ var CopyWebpackPlugin = require("copy-webpack-plugin");
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var pkg = require("./package.json");
 let { devServer: { proxySev, host, port } } = pkg;
-console.log(proxySev, '`proxySev`');
 module.exports = {
   entry: {
-    // lol: path.resolve(__dirname, "./client/vue/app.js")
-    lol: path.resolve(__dirname, "./client/app.jsx")
+    lol: path.resolve(__dirname, "./client/vue/app.js")
+    // lol: path.resolve(__dirname, "./client/app.jsx")
   },
   output: {
     path: path.join(__dirname, "/dev"),
     filename: "[name].js",
+    // publicPath: "fuckyou"
   },
   // context: path.resolve(__dirname, "./client"),
   devtool: 'eval-source-map',
-  externals: {
-    'jquery': 'window.jQuery',
-    'jquery': 'window.$',
-  },
+  // externals: {
+  //   'jquery': 'window.jQuery',
+  //   'jquery': 'window.$',
+  // },
   devServer: {
     // contentBase: path.join(__dirname, "/dev"),
     contentBase: false,
@@ -71,6 +71,9 @@ module.exports = {
     ]),
     new webpack.ProvidePlugin({
       axios: "axios",
+      Vue: "Vue",
+      ZZZ: "jquery",
+      $: "jquery"
     })
   ],
   module: {
@@ -117,9 +120,10 @@ module.exports = {
   resolve: {
     extensions: [".vue", '.js', '.coffee'],
     alias: {
-      "vue$": path.join(__dirname, "./node_modules/vue/dist/vue.esm.js"),
+      "Vue$": path.join(__dirname, "./node_modules/vue/dist/vue.min.js"),
       '@mobx': path.resolve(__dirname, "./client/mobx"),
       '@redux': path.resolve(__dirname, "./client/redux"),
+      "jquery$": path.join(__dirname, "./node_modules/jquery/dist/jquery.min.js"),
       // '@route': path.resolve(__dirname, "./client/js/route"),
       // '@store': path.resolve(__dirname, "./client/js/store"),
     }

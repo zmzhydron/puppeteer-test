@@ -1,23 +1,23 @@
 import React from 'react'
 import ReactDom from "react-dom"
-import App from "./mobxjsx/index.jsx"
+import App from "./reactRouter/mobxindex.jsx"
 import AppRouter from "./reactRouter/index.jsx"
 import ReduxMain from "./reduxjsx/index.jsx"
-import Stores from "@mobx/family.js"
+import Stores from "@mobx/goal.js"
 import StoreRedux from "@redux/reducers/a.js"
-// import { Provider, inject } from "mobx-react"
-import { Provider } from "react-redux"
+import { Provider, inject } from "mobx-react"
+// import { Provider } from "react-redux"
 import { createStore, applyMiddleware, combineReducers } from 'redux'
 import thunk from "redux-thunk"
 import { syncHistoryWithStore, routerReducer } from 'react-router-redux'
 import { BrowserRouter as Router, HashRouter, Route, Link } from 'react-router-dom'
-// var store = new Stores();
-// window.store = store;
-// ReactDom.render(
-//   <Provider asdf={store}>
-//     <App />
-//   </Provider>
-//   , document.getElementById('app'));
+var store = new Stores();
+window.store = store;
+ReactDom.render(
+  <Provider asdf={store}>
+    <App />
+  </Provider>
+  , document.getElementById('app'));
 
 /** middleware ***/
 
@@ -95,8 +95,8 @@ const ASDF = () => {
   )
 }
 //ReduxMain
-ReactDom.render(
-  <Provider store={store}>
-    <AppRouter />
-  </Provider>
-  , document.getElementById('app'));
+// ReactDom.render(
+//   <Provider store={store}>
+//     <AppRouter />
+//   </Provider>
+//   , document.getElementById('app'));

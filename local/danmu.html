@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0px;
+      padding: 0px;
+    }
+
+    body {
+      overflow-x: hidden;
+    }
+
+    #a {
+      height: 100vh;
+      width: 100%;
+      overflow: hidden;
+      border: solid 5px red;
+      box-sizing: border-box;
+    }
+
+    .danmu {
+      position: absolute;
+      z-index: 2;
+      left: 100%;
+      white-space: nowrap;
+    }
+
+    .danmu.red {
+      color: red;
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    #container {
+      overflow: hidden;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="a"></div>
+</body>
+<script>
+  const log = window.console.log;
+  const _width = document.documentElement.clientWidth;
+  const _height = document.documentElement.clientHeight;
+  var list = [{
+      "user": "sjb",
+      "time": "",
+      "msg": `jaguar fpace`
+    },
+    {
+      "user": "sjb",
+      "time": "",
+      "msg": `acura rdx`
+    },
+    {
+      "user": "sjb",
+      "time": "",
+      "msg": `benz glc43`
+    },
+    {
+      "user": "sjb",
+      "time": "",
+      "msg": `audi sq5`
+    },
+    {
+      "user": "sjb",
+      "time": "",
+      "msg": 'bmw x3m40i'
+    },
+    {
+      "user": "sjb",
+      "time": "",
+      "msg": 'ford edge st'
+    }
+  ];
+  let danmulist = [];
+  const makedanmu = (obj) => {
+    var p = document.createElement(`p`);
+    p.className = 'danmu red';
+    p.innerText = `${obj.user}: ${obj.msg}`;
+    p.id = makeRandomShit();
+    return {
+      id: makeRandomShit(),
+      ele: p
+    }
+  }
+  const makeRandomShit = () => {
+    return Array.from({ length: 10 }).map(item => String.fromCharCode(Math.floor(Math.random() * 25 + 97))).join("");
+  }
+  const activeOne = (element, parent, opt = {}) => {
+    let { ele, id } = element;
+    let { speed = Math.floor(Math.random() * 3 + 1), top = Math.floor(Math.random() * 400) } = opt;
+    let index = _width;
+    let indent = _width / 60 / speed;
+    parent.appendChild(ele);
+    ele.style.top = top + "px";
+    const core = () => {
+      index = index - indent;
+      if (index > -ele.offsetWidth) {
+        ele.style.left = Math.floor(index) + "px";
+        requestAnimationFrame(core);
+      } else {
+        parent.removeChild(ele);
+      }
+    }
+    requestAnimationFrame(core);
+  }
+  const reduceHeight = ary => {
+    const core = (val, ary) => {
+      let list = ary.map(item => [item - 5, item + 25]);
+      const innerCore = (list, val) => {
+        let r = list.filter(item => {
+          let [top, bottom] = item;
+          if (val > top && val < bottom) {
+            return true;
+          } else {
+            return false;
+          }
+        });
+        if (r.length > 0) {
+          return innerCore(list, Math.floor(Math.random() * 500));
+        } else {
+          return val;
+        }
+      }
+      return innerCore(list, val);
+    }
+    for (var s = 0; s < ary.length; s++) {
+      let item = ary[s];
+      ary.splice(s, 1);
+      let r = core(item, ary);
+      ary.splice(s, 0, r);
+    }
+    return ary;
+  }
+  window.onload = function() {
+    const diva = document.getElementById("a");
+    diva.style.cssText = `width:${_width-20}px; height: ${_height-20}px`;
+    // 让其高度不重合
+    let heighary = reduceHeight(list
+      .map(item => Math.floor(Math.random() * 400)))
+      .forEach((item, index) => {
+        console.log(list)
+        activeOne(makedanmu(list[index]), diva, {top: item})
+      })
+  }
+
+  window.onresize = function() {
+    log("resizing");
+  }
+</script>
+
+</html>

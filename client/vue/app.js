@@ -1,6 +1,5 @@
 import Main from "./main.vue"
 import Plugins from "./plugins.js"
-import Vue from "vue"
 import routes from "./router"
 import VueRouter from 'vue-router'
 Vue.use(VueRouter)

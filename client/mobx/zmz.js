@@ -1,4 +1,4 @@
-import { observable, computed, action, extendObservable, isObservable, isBoxedObservable, autoru } from "mobx";
+import { observable, computed, action, extendObservable, isObservable, isBoxedObservable, autorun } from "mobx";
 let myself = {
   name: {
     first: "zhang",
