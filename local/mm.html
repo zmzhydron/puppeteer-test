@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>多个块元素水平居中</title>
+    <style type="text/css">
+    *{
+      padding: 0px;
+      margin: 0px;
+    }
+      #parent {
+        width: 500px;
+        height: auto;
+        border:  solid 1px red;
+        margin: 50px;
+      }
+      .son{
+        display: table-cell;
+        width: 25%;
+        box-sizing: border-box;
+        word-break: break-all;
+      }
+      #a {
+        background: #03232A;
+      }
+      #b{
+        background-color: red;
+      }
+      #c{
+        background: rgb(26, 188, 130);
+      }
+      #d{
+        background-color: yellow;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="parent">
+      <div class="son" id="a">111111111</div>
+      <div class="son" id="b">111111111</div>
+      <div class="son" id="c">111111111</div>
+      <div class="son" id="d">2222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222</div>
+    </div>
+  </body>
+
+</html>

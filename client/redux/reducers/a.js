@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux'
+import shit from "./aa.js"
 let name = 'shitman';
 const raw = {
   name: "zhang",
@@ -43,4 +44,7 @@ const stageA = reducerWapper({
     }
   }
 })
-export default stageA;
+export default combineReducers({
+  aaa: stageA,
+  bbb: shit
+});

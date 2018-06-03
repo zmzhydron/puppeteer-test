@@ -8,6 +8,7 @@ const aw = type => value => {
 
 export const changesonname = aw("changesonname");
 export const changefathername = aw("changefathername");
+export const changemodulebbbname = aw("changemodulebbbname");
 export const asyncChangeName = value => {
   return function(dispatch) {
     setTimeout(() => {

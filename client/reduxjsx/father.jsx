@@ -15,6 +15,9 @@ export default class Father extends React.Component {
   asyncChangeNamePro() {
     this.props.actions.asyncChangeNamePro();
   }
+  asdasdasd(){
+    this.props.actions.changemodulebbbname('ass fucking bitch');
+  }
   render() {
     let { name, age } = this.props.passProps;
     let asdf = this.context.asdf;
@@ -25,10 +28,8 @@ export default class Father extends React.Component {
           <button onClick={this.changename.bind(this)}>changename</button>
           <button onClick={this.asyncChangeName.bind(this)}>asyncChangeName</button>
           <button onClick={this.asyncChangeName.bind(this)}>asyncChangeNamePro</button>
+          <button onClick={this.asdasdasd.bind(this)}>change module bbb.name</button>
       </div>
     )
   }
-}
-Father.contextTypes = {
-  asdf: propTypes.string
 }

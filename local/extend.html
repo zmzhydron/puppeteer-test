@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    #a p:nth-child(3){
+      color: red
+    }
+    #a p:nth-of-type(3){
+      color: green
+    }
+  </style>
+</head>
+<body>
+  <div id="a">
+    <p>11</p>
+    <span>span</span>
+    <p>22</p>
+    <p>33</p>
+    <p>44</p>
+  </div>
+  <p>a</p>
+  <span>~~~~~~~</span>
+  <p>b</p>
+  <p>c</p>
+  <p>d</p>
+</body>
+<script>
+  function A(name = 'iAM A'){
+    this.name = name;
+  }
+  A.prototype.hi = function() {
+    console.log(`hi im: ${this.name}`);
+  }
+  function extend(Parent, Son){
+    var Temp = function (){};
+    Temp.prototype = Parent.prototype;
+    Son.prototype = new Temp();
+    // Son.prototype = Parent.prototype;
+    Son.prototype.constructor = Son;
+  }
+  function B(){
+    A.apply(this, arguments);
+  }
+  extend(A,B);
+  A.prototype.hii = function(){
+    console.log(`overwritten!!`);
+  }
+  var b1 = new B("zhangmingzhi");
+
+  b1.hi();
+  b1.hii();
+  console.log(b1.__proto__.constructor);
+  var o = {
+    toString: () => {
+      return `i am to string`;
+    }
+  }
+  class AA{
+    constructor(name){
+      this.name = name
+    }
+    hi(){
+      console.log(this.name, `~~hello again`);
+    }
+  }
+  class BB extends AA{
+    constructor(name){
+      super(name)
+    }
+  }
+  var b2 = new BB('zmz');
+  b2.hi()
+  // var b3 = new new BB("sjb");
+  function hehe(){
+    oops = function () {
+      console.log(`oops`)
+    }
+    return this;
+  }
+  console.log(hehe().oops());
+  console.log(oops())
+  
+  var gogo = function(){
+    console.log(22);
+  }
+  function gogo(){
+    console.log(111)
+  }
+  var meme = {
+    constructor: function() {
+      return {
+        name: "shitman"
+      }
+    }
+  }
+  var mmmm = new meme;
+</script>
+</html>

@@ -7,27 +7,35 @@ import Father from "./father.jsx"
 import Son from "./son.jsx"
 import propTypes from "prop-types"
 import { Button } from 'antd';
-
-let myself = {
-  name: {
-    first: "zhang",
-    last: "mingzhi"
-  }
-}
+import ContentSon from "./contentSon.jsx"
+import Content from "./contents.js"
+console.log(Content.Provider, `Provider`);
 class Index extends React.Component {
   constructor(props) {
     super(props);
     this.actions = bindActionCreators(actions, props.dispatch);
     this.state = {
-      randoms: "sit down"
+      randoms: "sit down",
+      meobj: {
+        type: 'codeer',
+        outfit: 'shorts',
+        shape: 'fat ass',
+        top: 'small head',
+        changes: () => {
+          console.log(`'captain america'`);
+          this.setState(state => {
+            return {
+              meobj: {
+                  ...state.meobj,
+                  type: 'captain america'
+                }
+            }
+          })
+        }
+      }
     }
   }
-  getChildContext() {
-    console.log("getChildContext");
-    return { asdf: "context test"+this.state.randoms };
-  }
   haha() {
-    console.log("fuckyou");
     this.setState({
       randoms: new Date().valueOf() + "aaa"
     })
@@ -36,19 +44,21 @@ class Index extends React.Component {
     console.log(this.props)
     let { son, father, member, name } = this.props.store;
     return (
-      <div>
+      <Content.Provider value={this.state.meobj}>
+        <ContentSon age="18"/>
+        <h2>{this.props.shitload.name}</h2>
         <Father actions={this.actions} passProps={father} />
         <Son actions={this.actions} passProps={son} />
         <Button onClick={this.haha.bind(this)}>{this.state.randoms}</Button>
-      </div>
+      </Content.Provider>
     )
   }
 }
-Index.childContextTypes = {
-  asdf: propTypes.string
-};
+
 export default connect(state => {
+  console.log(state, `state of connect`);
   return {
-    store: state
+    store: state.aaa,
+    shitload: state.bbb
   }
 })(Index)

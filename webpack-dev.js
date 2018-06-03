@@ -6,13 +6,13 @@ var pkg = require("./package.json");
 let { devServer: { proxySev, host, port } } = pkg;
 module.exports = {
   entry: {
-    lol: path.resolve(__dirname, "./client/vue/app.js")
-    // lol: path.resolve(__dirname, "./client/app.jsx")
+    // lol: path.resolve(__dirname, "./client/vue/app.js")
+    lol: path.resolve(__dirname, "./client/app.jsx")
   },
   output: {
     path: path.join(__dirname, "/dev"),
     filename: "[name].js",
-    // publicPath: "fuckyou"
+    // publicPath: "/fuckyou/"
   },
   // context: path.resolve(__dirname, "./client"),
   devtool: 'eval-source-map',
@@ -26,6 +26,7 @@ module.exports = {
     port: port,
     host: host,
     index: "app.html",
+    publicPath: "/asdf/",
     historyApiFallback: {
       index: "/app.html"
     },
@@ -99,14 +100,14 @@ module.exports = {
         test: /\.scss?$/,
         loader: "style-loader!css-loader!sass-loader"
       },
-      // {
-      //   test: /\.(jpg|png|gif|svg)(\?.*)?$/,
-      //   loader: "url-loader",
-      //   options: {
-      //     limit: 1,
-      //     name: "imgs/[name]-[hash:4].[ext]"
-      //   }
-      // },
+      {
+        test: /\.(jpg|png|gif|svg)(\?.*)?$/,
+        loader: "url-loader",
+        options: {
+          limit: 1,
+          name: "imgss/[name]-[hash:4].[ext]"
+        }
+      },
       // {
       //   test: /\.(eot|ttf|otf|woff)(\?.*)?$/,
       //   loader: "url-loader",
